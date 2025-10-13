@@ -16,6 +16,8 @@ import re
 from io import BytesIO
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
+import os
+os.system('pip install openpyxl')
 
 st.set_page_config(page_title="LTE KPI Full Report", layout="wide")
 st.title("📡 LTE KPI Full Report (Sheet1..SheetX + Throughput Analysis)")
@@ -426,3 +428,4 @@ if bbh_file and day_file:
 
 else:
     st.info("Please upload BBH and Day files to enable processing. Sector file is optional.")
+
