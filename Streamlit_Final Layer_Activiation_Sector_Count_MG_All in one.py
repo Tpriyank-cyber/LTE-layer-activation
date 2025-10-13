@@ -279,7 +279,7 @@ if bbh_file and day_file:
             # ------------------------
             # Throughput analysis (Band & Sector)
             # ------------------------
-            df_th = df_day.copy() if not df_day.empty else df_bbh.copy()
+            df_th = df_bbh.copy() if not df_bbh.empty else df_bbh.copy()
             if "Non-GBR DL throughput" in df_th.columns:
                 df_th["DL_Mbps"] = pd.to_numeric(df_th["Non-GBR DL throughput"], errors="coerce")
             else:
@@ -428,4 +428,5 @@ if bbh_file and day_file:
 
 else:
     st.info("Please upload BBH and Day files to enable processing. Sector file is optional.")
+
 
