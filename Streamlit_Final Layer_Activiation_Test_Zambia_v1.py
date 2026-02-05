@@ -51,9 +51,9 @@ def get_carrier(cell_name):
 # =========================================================
 def run_full_analysis(bbh_file, day_file, sector_file):
 
-    df_bbh = pd.read_excel(bbh_file)
-    df_day = pd.read_excel(day_file)
-    df_sector_input = pd.read_excel(sector_file)
+    df_bbh = pd.read_excel(bbh_file,engine="openpyxl")
+    df_day = pd.read_excel(day_file,engine="openpyxl")
+    df_sector_input = pd.read_excel(sector_file,engine="openpyxl")
 
     # -------------------------------
     # Steps 1–3 (same as yours)
@@ -526,3 +526,4 @@ if st.button("Run Full Analysis"):
             result,
             file_name="Output_Final_Combined.xlsx"
         )
+
