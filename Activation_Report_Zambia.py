@@ -13,7 +13,7 @@ from streamlit_option_menu import option_menu
 favicon = "favicon.png"
 
 st.set_page_config(
-    page_title="Nokia BBH Analysis Tool",
+    page_title="LTE Layer Activation Report",
     page_icon=favicon,
     layout="wide"
 )
@@ -27,7 +27,7 @@ background_header_text_color = "#a235b6"
 # -------------------------------------------------
 with st.sidebar:
     selected = option_menu(
-        menu_title="Region Name",
+        menu_title="Airtel Zambia",
         options=["About", "BBH Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
@@ -119,7 +119,7 @@ if selected == "About":
         f"<h2 style='color:{background_header_text_color};'>Tool Introduction</h2>",
         unsafe_allow_html=True
     )
-    st.write("BBH KPI automated analysis & Excel report generator.")
+    st.write("LTE Band/Sector/LCEL wise report Generator.")
 
 
 # =====================================================
@@ -169,7 +169,7 @@ if selected == "BBH Tool":
             st.download_button(
                 "Download Output Excel",
                 data=output,
-                file_name="BBH_Output.xlsx",
+                file_name="LTE Layer Activation_Output.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
 
@@ -182,7 +182,7 @@ if selected == "Contact Us":
         f"<h3 style='color:{background_header_text_color};'>Help us improve!</h3>",
         unsafe_allow_html=True
     )
-    st.write("Reach out to developer for support.")
+    st.write("Reach out to developer for support @ tomar.priyank@nokia.com.")
 
 
 # -------------------------------------------------
