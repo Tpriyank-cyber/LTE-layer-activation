@@ -7,9 +7,6 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 from streamlit_option_menu import option_menu
 
-# -------------------------------------------------
-# PAGE CONFIG (same style as your first app)
-# -------------------------------------------------
 favicon = "favicon.png"
 
 st.set_page_config(
@@ -22,9 +19,6 @@ background_text_color = "#001135"
 background_header_text_color = "#a235b6"
 
 
-# -------------------------------------------------
-# SIDEBAR MENU (same formatting you used)
-# -------------------------------------------------
 with st.sidebar:
     selected = option_menu(
         menu_title="Airtel Zambia",
@@ -45,9 +39,6 @@ with st.sidebar:
     )
 
 
-# =====================================================
-# Helper Functions (YOUR ORIGINAL LOGIC)
-# =====================================================
 def get_band(cell):
     cell = str(cell).upper()
     if "L800" in cell:
@@ -69,9 +60,6 @@ def get_carrier(cell):
     return f"F{m.group(1)}" if m else "NA"
 
 
-# =====================================================
-# PROCESS FUNCTION (wrapped your script inside)
-# =====================================================
 def process_files(bbh_file, day_file, sector_file):
 
     df_bbh = pd.read_excel(bbh_file)
@@ -89,9 +77,7 @@ def process_files(bbh_file, day_file, sector_file):
         df["Sector"] = df["LNCEL name"].apply(get_sector)
         df["Carrier"] = df["LNCEL name"].apply(get_carrier)
 
-    # --------------------------------
-    # Example: simple summary (can keep all your sheets here)
-    # --------------------------------
+
     sheet = (
         df_bbh.groupby(["Band", "Date"])["Avg IP thp DL QCI9"]
         .mean()
@@ -100,9 +86,7 @@ def process_files(bbh_file, day_file, sector_file):
 
     pivot = sheet.pivot(index="Band", columns="Date", values="Avg IP thp DL QCI9")
 
-    # --------------------------------
-    # Write to Excel in memory
-    # --------------------------------
+
     output = BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         pivot.to_excel(writer, sheet_name="Band_Summary")
@@ -111,9 +95,6 @@ def process_files(bbh_file, day_file, sector_file):
     return output
 
 
-# =====================================================
-# ABOUT PAGE
-# =====================================================
 if selected == "About":
     st.markdown(
         f"<h2 style='color:{background_header_text_color};'>Tool Introduction</h2>",
@@ -122,9 +103,6 @@ if selected == "About":
     st.write("LTE Band/Sector/LCEL wise report Generator.")
 
 
-# =====================================================
-# MAIN TOOL PAGE
-# =====================================================
 if selected == "BBH Tool":
 
     st.markdown(
@@ -173,10 +151,6 @@ if selected == "BBH Tool":
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
 
-
-# =====================================================
-# CONTACT PAGE
-# =====================================================
 if selected == "Contact Us":
     st.markdown(
         f"<h3 style='color:{background_header_text_color};'>Help us improve!</h3>",
@@ -185,9 +159,6 @@ if selected == "Contact Us":
     st.write("Reach out to developer for support @ tomar.priyank@nokia.com.")
 
 
-# -------------------------------------------------
-# HIDE STREAMLIT HEADER/FOOTER
-# -------------------------------------------------
 st.markdown("""
 <style>
 MainMenu {visibility:hidden;}
