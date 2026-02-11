@@ -583,7 +583,7 @@ if selected == "About":
     Upload 3 input files and download 11-sheet report automatically.
     """)
 
-if selected == "Tool Name":
+if selected == "Tool":
 
     st.markdown(
         f"<h2 style='color:{background_header_text_color};'>📊 LTE Layer Activation Tool</h2>",
@@ -629,6 +629,7 @@ if selected == "Contact Us":
 
     st.write("For support or queries contact:")
     st.write("tomar.priyank@nokia.com")
+
 
 
 
