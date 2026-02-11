@@ -532,7 +532,7 @@ def run_full_analysis(bbh_file, day_file, sector_file):
     output.seek(0)
 
     # =====================================================
-    # HEADER COLORING (same logic)
+    # HEADER COLORING
     # =====================================================
     wb = load_workbook(output)
 
@@ -586,7 +586,7 @@ if selected == "About":
 if selected == "Tool Name":
 
     st.markdown(
-        f"<h2 style='color:{background_header_text_color};'>📊 Nokia BBH KPI Tool</h2>",
+        f"<h2 style='color:{background_header_text_color};'>📊 LTE Layer Activation Tool</h2>",
         unsafe_allow_html=True
     )
 
@@ -628,5 +628,6 @@ if selected == "Contact Us":
     )
 
     st.write("For support or queries contact:")
-    st.write("📧 priyank.tom@nokia.com")
+    st.write("tomar.priyank@nokia.com")
+
 
