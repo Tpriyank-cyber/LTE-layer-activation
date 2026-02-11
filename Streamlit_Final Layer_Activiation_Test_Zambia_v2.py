@@ -67,7 +67,7 @@ with st.sidebar:
 
     selected = option_menu(
         menu_title="Airtel Zambia",
-        options=["About", "Tool Name", "Contact Us"],
+        options=["About", "Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
             "container": {"background-color": "transparent"},
@@ -104,7 +104,7 @@ def get_carrier(cell_name):
 
 
 # =========================================================
-# FULL PROCESS FUNCTION (EXACT 11 STEPS)
+# FULL PROCESS FUNCTION
 # =========================================================
 def run_full_analysis(bbh_file, day_file, sector_file):
 
@@ -629,5 +629,6 @@ if selected == "Contact Us":
 
     st.write("For support or queries contact:")
     st.write("tomar.priyank@nokia.com")
+
 
 
