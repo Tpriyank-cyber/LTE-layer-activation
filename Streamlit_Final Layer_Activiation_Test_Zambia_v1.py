@@ -17,12 +17,44 @@ from io import BytesIO
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
-st.set_page_config(page_title="BBH KPI Tool", layout="wide")
 
-selected = st.sidebar.radio(
-    "Region Name",
-    ["BBH Tool"]
+
+# ===================== PAGE CONFIG =====================
+favicon = "favicon.png"
+st.set_page_config(
+    page_title="LTE layer Activation Processing Application",
+    page_icon=favicon,
+    layout="wide"
 )
+
+# ===================== CUSTOM CSS =====================
+st.markdown("""
+<style>
+#MainMenu, footer, header {visibility: hidden;}
+.stApp {background-color: #ffffff; font-family: "Nokia Pure Headline Light";}
+section[data-testid="stSidebar"] {background-color: #f5f0fa;}
+h1, h2, h3 {color: #001135; font-family: "Nokia Pure Headline";}
+label, .stMarkdown, .stText {color: #001135; font-size:16px;}
+.stButton > button {background-color: #a235b6; color:white; font-weight:bold; border-radius:6px;}
+.stButton > button:hover {background-color:#842b94;}
+[data-testid="stDataFrame"] {border:1px solid #a235b6; border-radius:6px;}
+</style>
+""", unsafe_allow_html=True)
+
+# ===================== SIDEBAR =====================
+with st.sidebar:
+    st.markdown("<h2 style='text-align:center; color:#660a93;'>Data Processing Tool</h2>", unsafe_allow_html=True)
+    selected = option_menu(
+        menu_title="Airtel Zambia",
+        options=["About", "Tool", "Contact Us"],
+        icons=["person", "slack", "telephone"],
+        menu_icon=None,
+        styles={
+            "menu-title": {"color": "#660a93", "font-weight": "bold", "text-align": "center"},
+            "nav-link": {"color": "#61206d", "font-size": "16px", "font-weight": "bold"},
+            "nav-link-selected": {"background-color": "#a235b6", "color": "white"}
+        }
+    )
 
 
 # =========================================================
@@ -530,5 +562,6 @@ if st.button("Run Full Analysis"):
             result,
             file_name="Output_Final_Combined.xlsx"
         )
+
 
 
