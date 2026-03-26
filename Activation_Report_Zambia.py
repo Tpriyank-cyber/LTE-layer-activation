@@ -22,7 +22,7 @@ background_header_text_color = "#a235b6"
 with st.sidebar:
     selected = option_menu(
         menu_title="Airtel OPCOs",
-        options=["About", "BBH Tool", "Contact Us"],
+        options=["About", "Sector Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
             "container": {"background-color": "transparent"},
@@ -100,7 +100,7 @@ if selected == "About":
         f"<h2 style='color:{background_header_text_color};'>Tool Introduction</h2>",
         unsafe_allow_html=True
     )
-    st.write("LTE Band/Sector/LCEL wise report Generator.")
+    st.write("LTE Band/Sector/Layerwise report Generator.")
 
 
 if selected == "BBH Tool":
