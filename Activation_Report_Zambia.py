@@ -22,7 +22,7 @@ background_header_text_color = "#a235b6"
 with st.sidebar:
     selected = option_menu(
         menu_title="Airtel OPCOs",
-        options=["About", "BBH Tool", "Contact Us"],
+        options=["About", "sector Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
             "container": {"background-color": "transparent"},
@@ -60,26 +60,26 @@ def get_carrier(cell):
     return f"F{m.group(1)}" if m else "NA"
 
 
-def process_files(BBH_file, day_file,BBH_file):
+def process_files(BBH_file, day_file,sector_file):
 
     df_BBH = pd.read_excel(BBH_file)
     df_day = pd.read_excel(day_file)
-    df_BBH = pd.read_excel(BBH_file)
+    df_sector = pd.read_excel(BBH_file)
 
-    for df in (df_BBH, df_day, df_BBH):
+    for df in (df_BBH, df_day, df_sector):
         df["Period start time"] = pd.to_datetime(
             df["Period start time"], errors="coerce"
         )
         df["Date"] = df["Period start time"].dt.date
 
-    for df in (df_BBH, df_day, df_BBH):
+    for df in (df_BBH, df_day, df_sector):
         df["Band"] = df["LNCEL name"].apply(get_band)
         df["BBH"] = df["LNCEL name"].apply(get_BBH)
         df["Carrier"] = df["LNCEL name"].apply(get_carrier)
 
 
     sheet = (
-        df_BBH.groupby(["Band", "Date"])["Avg IP thp DL QCI9"]
+        df_sector.groupby(["Band", "Date"])["Avg IP thp DL QCI9"]
         .mean()
         .reset_index()
     )
@@ -103,7 +103,7 @@ if selected == "About":
     st.write("LTE Band/BBH/Layerwise report Generator.")
 
 
-if selected == "BBH Tool":
+if selected == "Sector Tool":
 
     st.markdown(
         f"<h3 style='color:{background_text_color};'>Upload Input Files</h3>",
