@@ -22,7 +22,7 @@ background_header_text_color = "#a235b6"
 with st.sidebar:
     selected = option_menu(
         menu_title="Airtel OPCOs",
-        options=["About", "sector Tool", "Contact Us"],
+        options=["About", "Sector Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
             "container": {"background-color": "transparent"},
