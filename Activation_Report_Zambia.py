@@ -22,7 +22,7 @@ background_header_text_color = "#a235b6"
 with st.sidebar:
     selected = option_menu(
         menu_title="Airtel OPCOs",
-        options=["About", "Sector Tool", "Contact Us"],
+        options=["About", "BBH Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
             "container": {"background-color": "transparent"},
@@ -50,7 +50,7 @@ def get_band(cell):
     return "L1800"
 
 
-def get_Sector(cell):
+def get_BBH(cell):
     m = re.search(r"S([1-9])", str(cell).upper())
     return f"S{m.group(1)}" if m else "unknown"
 
@@ -60,26 +60,26 @@ def get_carrier(cell):
     return f"F{m.group(1)}" if m else "NA"
 
 
-def process_files(Sector_file, day_file, Sector_file):
+def process_files(BBH_file, day_file, BBH_file):
 
-    df_Sector = pd.read_excel(Sector_file)
+    df_BBH = pd.read_excel(BBH_file)
     df_day = pd.read_excel(day_file)
-    df_Sector = pd.read_excel(Sector_file)
+    df_BBH = pd.read_excel(BBH_file)
 
-    for df in (df_Sector, df_day, df_Sector):
+    for df in (df_BBH, df_day, df_BBH):
         df["Period start time"] = pd.to_datetime(
             df["Period start time"], errors="coerce"
         )
         df["Date"] = df["Period start time"].dt.date
 
-    for df in (df_Sector, df_day, df_Sector):
+    for df in (df_BBH, df_day, df_BBH):
         df["Band"] = df["LNCEL name"].apply(get_band)
-        df["Sector"] = df["LNCEL name"].apply(get_Sector)
+        df["BBH"] = df["LNCEL name"].apply(get_BBH)
         df["Carrier"] = df["LNCEL name"].apply(get_carrier)
 
 
     sheet = (
-        df_Sector.groupby(["Band", "Date"])["Avg IP thp DL QCI9"]
+        df_BBH.groupby(["Band", "Date"])["Avg IP thp DL QCI9"]
         .mean()
         .reset_index()
     )
@@ -100,10 +100,10 @@ if selected == "About":
         f"<h2 style='color:{background_header_text_color};'>Tool Introduction</h2>",
         unsafe_allow_html=True
     )
-    st.write("LTE Band/Sector/Layerwise report Generator.")
+    st.write("LTE Band/BBH/Layerwise report Generator.")
 
 
-if selected == "Sector Tool":
+if selected == "BBH Tool":
 
     st.markdown(
         f"<h3 style='color:{background_text_color};'>Upload Input Files</h3>",
@@ -113,13 +113,13 @@ if selected == "Sector Tool":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        Sector_file = st.file_uploader("Sector File", type=["xlsx"])
+        BBH_file = st.file_uploader("BBH File", type=["xlsx"])
 
     with col2:
         day_file = st.file_uploader("Daily File", type=["xlsx"])
 
     with col3:
-        Sector_file = st.file_uploader("Sector File", type=["xlsx"])
+        BBH_file = st.file_uploader("BBH File", type=["xlsx"])
 
     st.markdown("---")
 
@@ -136,11 +136,11 @@ if selected == "Sector Tool":
 
     if st.button("Run Analysis"):
 
-        if not (Sector_file and day_file and Sector_file):
+        if not (BBH_file and day_file and BBH_file):
             st.warning("Please upload all files")
         else:
             with st.spinner("Processing..."):
-                output = process_files(Sector_file, day_file, Sector_file)
+                output = process_files(BBH_file, day_file, BBH_file)
 
             st.success("Analysis completed ✅")
 
