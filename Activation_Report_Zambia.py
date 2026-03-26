@@ -64,7 +64,7 @@ def process_files(BBH_file, day_file,sector_file):
 
     df_BBH = pd.read_excel(BBH_file)
     df_day = pd.read_excel(day_file)
-    df_sector = pd.read_excel(BBH_file)
+    df_sector = pd.read_excel(sector_file)
 
     for df in (df_BBH, df_day, df_sector):
         df["Period start time"] = pd.to_datetime(
@@ -119,7 +119,7 @@ if selected == "Sector Tool":
         day_file = st.file_uploader("Daily File", type=["xlsx"])
 
     with col3:
-        BBH_file = st.file_uploader("BBH File", type=["xlsx"])
+        sector_file = st.file_uploader("sector File", type=["xlsx"])
 
     st.markdown("---")
 
@@ -136,7 +136,7 @@ if selected == "Sector Tool":
 
     if st.button("Run Analysis"):
 
-        if not (BBH_file and day_file and BBH_file):
+        if not (BBH_file and day_file and sector_file):
             st.warning("Please upload all files")
         else:
             with st.spinner("Processing..."):
