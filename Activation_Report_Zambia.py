@@ -100,7 +100,12 @@ if selected == "About":
         f"<h2 style='color:{background_header_text_color};'>Tool Introduction</h2>",
         unsafe_allow_html=True
     )
-    st.write("LTE Band/BBH/Layerwise report Generator.")
+    st.markdown("""
+                **LTE Layer Activation Report Tool**
+                
+                This tool automates the generation of LTE performance reports across **Band, BBH, and Layer levels**.  
+                It processes raw KPI data to deliver structured insights for quick analysis and decision-making.
+                """)
 
 
 if selected == "Sector Tool":
