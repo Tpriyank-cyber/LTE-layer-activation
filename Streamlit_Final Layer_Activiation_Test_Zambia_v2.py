@@ -66,7 +66,7 @@ div.stButton > button:hover {
 with st.sidebar:
 
     selected = option_menu(
-        menu_title="Airtel Zambia",
+        menu_title="Airtel OPCOs",
         options=["About", "Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
