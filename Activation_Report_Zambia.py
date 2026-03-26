@@ -60,7 +60,7 @@ def get_carrier(cell):
     return f"F{m.group(1)}" if m else "NA"
 
 
-def process_files(BBH_file, day_file, BBH_file):
+def process_files(BBH_file, day_file):
 
     df_BBH = pd.read_excel(BBH_file)
     df_day = pd.read_excel(day_file)
