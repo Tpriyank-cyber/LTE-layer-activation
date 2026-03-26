@@ -140,7 +140,7 @@ if selected == "Sector Tool":
             st.warning("Please upload all files")
         else:
             with st.spinner("Processing..."):
-                output = process_files(BBH_file, day_file, BBH_file)
+                output = process_files(BBH_file, day_file, sector_file)
 
             st.success("Analysis completed ✅")
 
