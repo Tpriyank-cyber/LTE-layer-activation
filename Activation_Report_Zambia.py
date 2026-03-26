@@ -21,7 +21,7 @@ background_header_text_color = "#a235b6"
 
 with st.sidebar:
     selected = option_menu(
-        menu_title="Airtel Zambia",
+        menu_title="Airtel OPCOs",
         options=["About", "BBH Tool", "Contact Us"],
         icons=["person", "slack", "telephone"],
         styles={
